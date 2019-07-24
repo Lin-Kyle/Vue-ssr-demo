@@ -3,7 +3,7 @@ const merge = require("webpack-merge"),
   OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin"),
   ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 
-module.exports = merge(common, {
+module.exports =  {
   mode: "production",
   // 原始源代码
   devtool: "none",
@@ -72,4 +72,4 @@ module.exports = merge(common, {
   },
 
   plugins: [new OptimizeCssAssetsPlugin()]
-});
+};

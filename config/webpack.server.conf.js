@@ -5,7 +5,7 @@ const path = require('path'),
   BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
     .BundleAnalyzerPlugin;
 
-module.exports = merge(common, {
+module.exports = {
   mode: "development",
   // 原始源代码（仅限行）
   devtool: "cheap-module-eval-source-map",
@@ -18,7 +18,7 @@ module.exports = merge(common, {
     contentBase: path.join(__dirname, '../'),
     // 是否开启gzip压缩
     compress: false,
-    port: 9000,
+    port: 9001,
     // 是否开启热替换功能
     // hot: true,
     host: '0.0.0.0',
@@ -58,4 +58,4 @@ module.exports = merge(common, {
     // 性能可视化
     // new BundleAnalyzerPlugin()
   ]
-});
+};

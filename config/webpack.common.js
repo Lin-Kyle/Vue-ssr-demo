@@ -8,24 +8,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin"),
   rules = require("./rules"),
   stats = require("./stats"),
   {
-    isProd, entry,
-    outputName,
-    outputPath,
-    publicPath, title
+    isProd, title
   } = require('./env');
 
 module.exports = {
-  // 入口
-  entry,
-  // 输出
-  output: {
-    // 打包文件名
-    filename: outputName,
-    // 输出路径
-    path: outputPath,
-    // 资源请求路径
-    publicPath
-  },
   module: {
     rules
   },
