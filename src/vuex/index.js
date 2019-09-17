@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export function createStore () {
+export default function createStore () {
   return new Vuex.Store({
     state: {
       items: {}
@@ -17,7 +17,7 @@ export function createStore () {
         // 以便我们能够知道数据在何时更新
         return new Promise((resolve, reject) => {
           setTimeout(() => {
-            resolve({ name: 123 })
+            resolve({ time: new Date() })
           }, 500)
         }).then((item) => {
           commit('setItem', { id, item })

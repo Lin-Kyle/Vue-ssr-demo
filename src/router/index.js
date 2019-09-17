@@ -11,14 +11,13 @@ export default function createRouter () {
       {
         // 首页
         alias: '/',
-        path: '/view1',
+        path: '/view1:id',
         component: () => import('../page/view1.vue')
       },
       {
-        path: '/view2',
+        path: '/view2:id',
         component: () => import('../page/view2.vue')
-      },
-      { path: '*', redirect: '/view1' }
+      }
     ]
   })
 }
