@@ -5,5 +5,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  created() {
+    try {
+      console.log(window);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+};
 </script>

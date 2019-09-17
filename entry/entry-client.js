@@ -1,7 +1,8 @@
 import createApp from '../src/app'
 
-const app = createApp()
-
+const { app, router } = createApp()
+// 路由完成初始导航时调用
 router.onReady(() => {
-  app.$mount('#root')
+  // 挂载App.vue模板中根元素
+  app.$mount('#app')
 })

@@ -1,15 +1,13 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin"),
-  CleanWebpackPlugin = require("clean-webpack-plugin"),
-  VueLoaderPlugin = require('vue-loader/lib/plugin'),
-  MiniCssExtractPlugin = require("mini-css-extract-plugin"),
-  ProgressBarPlugin = require('progress-bar-webpack-plugin'),
-  webpack = require('webpack'),
-  alias = require("./alias"),
-  rules = require("./rules"),
-  stats = require("./stats"),
-  {
-    isProd, title
-  } = require('./env');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+const webpack = require('webpack')
+const alias = require('./alias')
+const rules = require('./rules')
+const stats = require('./stats')
+const { isProd } = require('./env')
 
 module.exports = {
   module: {
@@ -26,27 +24,13 @@ module.exports = {
     // 进度条展示
     new ProgressBarPlugin(),
     // 该插件帮助我们安心地使用环境变量
-    new webpack.DefinePlugin({
-      'process.env.project': 'demo'
-    }),
+    new webpack.DefinePlugin({}),
     // 提取样式文件
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename:
-        !isProd
-          ? "[name].css"
-          : "style/[name].[contenthash].css",
-      chunkFilename:
-        !isProd
-          ? "[id].css"
-          : "style/[id].[contenthash].css"
-    }),
-    new HtmlWebpackPlugin({
-      // title
-      title,
-      // 模板
-      template: "index.html"
+      filename: !isProd ? '[name].css' : 'style/[name].[contenthash].css',
+      chunkFilename: !isProd ? '[id].css' : 'style/[id].[contenthash].css'
     })
   ],
   resolve: {
@@ -54,4 +38,4 @@ module.exports = {
     // 创建 import 或 require 的别名，来确保模块引入变得更简单
     alias
   }
-};
+}

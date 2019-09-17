@@ -1,25 +1,17 @@
-const merge = require('webpack-merge'),
-  nodeExternals = require('webpack-node-externals'),
-  common = require('./webpack.common.js'),
-  dev_conf = require('./webpack.dev.js'),
-  {
-    server
-  } = require('./env'),
-  VueSSRServerPlugin = require('vue-server-renderer/server-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const merge = require('webpack-merge')
+const nodeExternals = require('webpack-node-externals')
+const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
+const common = require('./webpack.common.js')
+const dev_conf = require('./webpack.dev.js')
+const { server } = require('./env')
 
 module.exports = merge(common, dev_conf, {
   // 入口
   entry: server.entry,
   // 输出
-  output: {
-    // 打包文件名
-    filename: server.outputName,
-    // 输出路径
-    path: server.outputPath,
-    // 资源请求路径
-    publicPath: server.publicPath,
-    libraryTarget: 'commonjs2',
-  },
+  output: server.output,
   // 对 bundle renderer 提供 source map 支持
   devtool: 'source-map',
   // 这允许 webpack 以 Node 适用方式(Node-appropriate fashion)处理动态导入(dynamic import)，
@@ -36,6 +28,7 @@ module.exports = merge(common, dev_conf, {
   // 构建为单个 JSON 文件的插件。
   // 默认文件名为 `vue-ssr-server-bundle.json`
   plugins: [
-    new VueSSRServerPlugin()
+    new VueSSRServerPlugin(),
+    new HtmlWebpackPlugin(server.htmlPluginOpt)
   ]
-});
+})

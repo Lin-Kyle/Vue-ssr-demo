@@ -1,12 +1,10 @@
-const merge = require("webpack-merge"),
-  common = require("./webpack.common.js"),
-  OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin"),
-  ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
 
-module.exports =  {
-  mode: "production",
+module.exports = {
+  mode: 'production',
   // 原始源代码
-  devtool: "none",
+  devtool: 'none',
   optimization: {
     // Setting optimization.runtimeChunk to true or "multiple" adds an additional chunk to each entrypoint containing only the runtime. This setting is an alias for:
     runtimeChunk: {
@@ -26,7 +24,7 @@ module.exports =  {
     },
     minimizer: [
       // This plugin serves to help projects with many entry points speed up their builds. The UglifyJS plugin provided with webpack runs sequentially on each of the output files. This plugin runs uglify in parallel with one thread for each of your available cpus. This can lead to significantly reduced build times as minification is very CPU intensive.
-      new ParallelUglifyPlugin({ 
+      new ParallelUglifyPlugin({
         // Optional absolute path to use as a cache. If not provided, caching will not be used.
         cacheDir: '.cache/',
         // 传递给 UglifyJS的参数如下：
@@ -70,6 +68,5 @@ module.exports =  {
       })
     ]
   },
-
   plugins: [new OptimizeCssAssetsPlugin()]
-};
+}
