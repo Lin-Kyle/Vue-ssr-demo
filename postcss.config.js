@@ -1,4 +1,4 @@
-const autoprefixer = require('autoprefixer');
+const autoprefixer = require('autoprefixer')
 
 module.exports = {
   plugins: [
@@ -6,4 +6,4 @@ module.exports = {
       browsers: ['iOS >= 6', 'Android >= 4', 'IE >= 9']
     })
   ]
-};
+}

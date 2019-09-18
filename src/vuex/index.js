@@ -1,11 +1,33 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+// store.js
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
-export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  }
-});
+export default function createStore () {
+  return new Vuex.Store({
+    state: {
+      items: {}
+    },
+    actions: {
+      fetchItem ({ commit }, id) {
+        // 假定我们有一个可以返回 Promise 的
+        // 通用 API（请忽略此 API 具体实现细节）
+        // `store.dispatch()` 会返回 Promise，
+        // 以便我们能够知道数据在何时更新
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve({ time: new Date() })
+          }, 500)
+        }).then((item) => {
+          commit('setItem', { id, item })
+        })
+      }
+    },
+    mutations: {
+      setItem (state, { id, item }) {
+        Vue.set(state.items, id, item)
+      }
+    }
+  })
+}

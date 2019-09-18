@@ -1,22 +1,23 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import View1 from 'PAGE/view1';
-import View2 from 'PAGE/view2';
+import Vue from 'vue'
+import Router from 'vue-router'
 
-Vue.use(Router);
-let router = new Router({
-  routes: [
-    {
-      // 首页
-      path: '/view1',
-      component: View1
-    },
-    {
-      path: '/view2',
-      component: View2
-    },
-    { path: '*', redirect: '/view1' }
-  ]
-});
+Vue.use(Router)
 
-export default router;
+export default function createRouter () {
+  return new Router({
+    // 要记得增加mode属性，因为#后面的内容不会发送至服务器，服务器不知道请求的是哪一个路由
+    mode: 'history',
+    routes: [
+      {
+        // 首页
+        alias: '/',
+        path: '/view1:id',
+        component: () => import('../page/view1.vue')
+      },
+      {
+        path: '/view2:id',
+        component: () => import('../page/view2.vue')
+      }
+    ]
+  })
+}

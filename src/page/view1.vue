@@ -1,17 +1,21 @@
 <template>
   <div>
     <p>Page1</p>
-    <img
-      class="img1"
-      src='../img/1.jpg'
-      alt=""
-    />
+    <p>{{item.time}}</p>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  asyncData({ store, route }) {
+    // 触发 action 后，会返回 Promise
+    return store.dispatch('fetchItem', route.params.id)
+  },
+  computed: {
+    // 从 store 的 state 对象中的获取 item。
+    item() {
+      return this.$store.state.items[this.$route.params.id]
+    }
+  }
+};
 </script>
-
-<style lang="scss" scoped>
-</style>
